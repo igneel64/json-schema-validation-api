@@ -75,8 +75,13 @@ class ValidationController extends ScalatraServlet {
           var messageArray = ArrayBuffer[String]();
           processingReport.forEach { message: ProcessingMessage =>
             {
-              var errorMessage = message.asJson().at("/schema/pointer").asText() + " : " + message
-                .getMessage()
+              var messagePointer = message.asJson().at("/schema/pointer").asText()
+              var messageContent = message.getMessage()
+              var errorMessage = if (messagePointer.isEmpty()) {
+                messageContent
+              } else {
+                messagePointer + " : " + messageContent
+              }
               messageArray += errorMessage
             }
           }
