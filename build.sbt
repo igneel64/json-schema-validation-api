@@ -25,6 +25,5 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.9"
   )
 
-enablePlugins(SbtTwirl)
 enablePlugins(ScalatraPlugin)
 enablePlugins(JavaAppPackaging)
